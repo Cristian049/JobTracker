@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import JobList from "./pages/JobList";
+import PrivateRoute from "./pages/PrivateRoute";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [jobs, setJobs] = useState([]);
@@ -42,7 +43,14 @@ function App() {
           path="/login"
           element={<Login setIsLoggedIn={setIsLoggedIn} />}
         />
-        <Route path="/jobs" element={isLoggedIn ? <JobList /> : <Login />} />
+        <Route
+          path="/jobs"
+          element={
+            <PrivateRoute>
+              <JobList />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
