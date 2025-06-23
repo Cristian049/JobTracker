@@ -1,12 +1,11 @@
 import Job from "../models/Job.js";
 
-export const getAllJobs = async (req, res) => {
+export const index = async (req, res) => {
   try {
-    const userId = req.user.userId;
-
-    const jobs = await Job.find({ createdBy: userId }).sort("-createdAt");
+    const jobs = await Job.find({});
+    res.status(200).json(jobs);
   } catch (error) {
     console.error("Something went wrong", error);
-    res.status(500).join({ message: "Server Error" });
+    res.status(500).json({ message: "Server Error" });
   }
 };

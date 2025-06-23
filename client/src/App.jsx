@@ -1,29 +1,50 @@
-import React, { useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import JobList from "./pages/JobList";
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/jobs")
-      .then((res) => {
+    const fetchJobs = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const res = await fetch("http://localhost:5000/api/jobs", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      })
-      .then((data) => setJobs(data))
-      .catch((err) => console.error("Eroare la fetch:", err));
+
+        const data = await res.json();
+        setIsLoggedIn(!!token);
+        setJobs(data);
+      } catch (err) {
+        console.error("Eroare la fetch:", err);
+      }
+    };
+
+    fetchJobs();
   }, []);
 
   return (
-    <div>
-      <h1>Job-uri aplicate</h1>
-      <ul>
-        {jobs.map((job) => (
-          <li key={job.id}>
-            {job.company} - {job.position}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={<Navigate to="/jobs" />} />
+        <Route
+          path="/register"
+          element={<Register setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route path="/jobs" element={isLoggedIn ? <JobList /> : <Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

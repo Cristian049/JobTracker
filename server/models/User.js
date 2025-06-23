@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    email: {
+    username: {
       type: String,
       required: [true, "Please provide a username"],
       unique: true,
@@ -12,14 +12,17 @@ const userSchema = new Schema(
       minlength: 3,
       maxlength: 30,
     },
-    username: {
+    email: {
       type: String,
-      required: true,
+      required: [true, "Please fill a valid email address"],
       unique: true,
       lowercase: true,
+      trim: true,
+      minlength: 3,
+      maxlength: 50,
       match: [
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please fill a valid email address",
+        "Please provide a valid email address",
       ],
     },
     password: {
@@ -39,7 +42,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.method.comparePassword = async function (candidatePassword) {
+userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 

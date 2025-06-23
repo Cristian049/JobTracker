@@ -1,8 +1,8 @@
 import express from "express";
-import { getAllJobs } from "../controllers/jobController";
-import { authenticateUser } from "../middleware/authMiddleware";
+import { index } from "../controllers/jobController.js";
+import { authMiddleware } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
-router.get("/", authenticateUser, getAllJobs);
+router.get("/", index);
 
 export default router;
