@@ -22,10 +22,6 @@ const jobSchema = new Schema(
       type: Date,
       default: Date.now,
     },
-    notes: {
-      type: String,
-      trim: true,
-    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

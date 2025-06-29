@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import JobList from "./pages/JobList";
 import PrivateRoute from "./pages/PrivateRoute";
+import AddJob from "./pages/AddJob";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [jobs, setJobs] = useState([]);
@@ -36,18 +37,23 @@ function App() {
       <Routes>
         <Route path="*" element={<Navigate to="/jobs" />} />
         <Route
-          path="/register"
+          path="register"
           element={<Register setIsLoggedIn={setIsLoggedIn} />}
         />
-        <Route
-          path="/login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
-        />
+        <Route path="login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route
           path="/jobs"
           element={
             <PrivateRoute>
               <JobList />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="new"
+          element={
+            <PrivateRoute>
+              <AddJob />
             </PrivateRoute>
           }
         />
