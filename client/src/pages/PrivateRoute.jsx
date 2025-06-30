@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
+import Loader from "../components/Loader/Loader";
+function PrivateRoute({ children, isLoggedIn, isUserLoading }) {
+  if (isUserLoading) return <Loader />;
 
-function PrivateRoute({ children }) {
-  const token = localStorage.getItem("token");
-
-  if (!token) {
+  if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }
   return children;

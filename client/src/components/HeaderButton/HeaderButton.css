@@ -1,0 +1,7 @@
+.menuBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--color-grey-700);
+}

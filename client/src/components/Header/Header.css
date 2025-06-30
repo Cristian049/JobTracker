@@ -1,0 +1,41 @@
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left span {
+  color: var(--color-grey-700);
+  margin-left: 15px;
+  cursor: text;
+  font-weight: bold;
+}
+
+.right {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.right button {
+  background: none;
+  border: none;
+  color: var(--color-brand-600);
+  cursor: pointer;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right button:hover {
+  background-color: var(--color-grey-100);
+}
+
+.right svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  color: var(--color-brand-600);
+}

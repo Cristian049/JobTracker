@@ -13,7 +13,9 @@ function Register({ setIsLoggedIn }) {
       [e.target.name]: e.target.value,
     }));
   }
+
   const navigate = useNavigate();
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
