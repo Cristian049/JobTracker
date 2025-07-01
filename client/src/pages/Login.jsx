@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import styles from "./Login.module.css";
 function Login({ setIsLoggedIn, setUser }) {
   const [formData, setFormData] = useState({
     email: "",
@@ -33,25 +34,48 @@ function Login({ setIsLoggedIn, setUser }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div className={styles.main}>
+      <div className={styles.container}>
+        <div className={styles.image}>
+          <img src="/logo.png" alt="" />
+        </div>
+        <h3>Log in to your account </h3>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.formElements}>
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={styles.formElements}>
+            <label htmlFor="password">Password</label>
+
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className={styles.formElements}>
+            <span className={styles.noaccount}>
+              Don't have an account?{" "}
+              <NavLink to="/register" className={styles.register}>
+                Register
+              </NavLink>
+            </span>
+          </div>
+          <div className={styles.formElements}>
+            <button type="submit">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
 

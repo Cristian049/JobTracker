@@ -32,3 +32,27 @@
   background-color: var(--color-grey-50);
   border-radius: var(--border-radius-sm);
 }
+
+.nav-link .icon {
+  color: var(--color-grey-400);
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link .text {
+  font-weight: bold;
+}
+
+.nav-link:hover .icon {
+  color: var(--color-brand-600);
+}
+
+.active {
+  background-color: var(--color-grey-50);
+  border-radius: var(--border-radius-sm);
+}
+.active .icon {
+  color: var(--color-brand-600);
+}

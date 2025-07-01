@@ -9,7 +9,6 @@ import PrivateRoute from "./pages/PrivateRoute";
 import AddJob from "./pages/AddJob";
 import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./components/AppLayout";
-import Loader from "./components/Loader/Loader";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -81,6 +80,7 @@ function App() {
               setIsDark={setIsDark}
               isJobLoading={isJobLoading}
               errorMessage={errorMessage}
+              setIsLoggedIn={setIsLoggedIn}
             />
           }
         >
@@ -91,7 +91,7 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 isUserLoading={isUserLoading}
               >
-                <JobList />
+                <Navigate to="/jobs" replace />
               </PrivateRoute>
             }
           />

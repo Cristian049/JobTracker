@@ -15,7 +15,8 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  color: var(--color-text-dark);
+  color: var(--color-grey-700);
+
   position: relative;
 }
 
@@ -26,6 +27,14 @@ ul {
 li {
   padding: 0;
   margin: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
 }
 
 .container {
@@ -57,13 +66,13 @@ li {
 }
 
 .header {
-  height: 4rem;
+  height: 3.5rem;
   background-color: var(--color-grey-0);
   color: var(--color-grey-700);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 2rem;
+  padding: 1.2rem;
   border-bottom: 1px solid var(--color-grey-100);
   box-shadow: var(--shadow-md);
 }

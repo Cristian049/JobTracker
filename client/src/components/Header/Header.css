@@ -22,8 +22,8 @@
   border: none;
   color: var(--color-brand-600);
   cursor: pointer;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 2.4rem;
+  height: 2.4rem;
   border-radius: var(--border-radius-sm);
   display: flex;
   align-items: center;
@@ -35,7 +35,7 @@
 }
 
 .right svg {
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--color-brand-600);
 }

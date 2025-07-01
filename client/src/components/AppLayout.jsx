@@ -6,26 +6,25 @@ import Loader from "./Loader/Loader";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
-function AppLayout({ isDark, setIsDark, isJobLoading, errorMessage }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth > 768;
-    }
-    return false;
-  });
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth <= 768;
-    }
-    return false;
-  });
+function AppLayout({
+  isDark,
+  setIsDark,
+  isJobLoading,
+  errorMessage,
+  setIsLoggedIn,
+}) {
+  const getIsMobile = () => window.innerWidth <= 768;
+
+  const [isMobile, setIsMobile] = useState(getIsMobile);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => !getIsMobile());
 
   useEffect(() => {
     function handleResize() {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
-      setIsSidebarOpen((mobile) => (mobile ? false : true));
+      setIsSidebarOpen(!mobile);
     }
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -40,6 +39,7 @@ function AppLayout({ isDark, setIsDark, isJobLoading, errorMessage }) {
           setIsDark={setIsDark}
           toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
           showToggleBtn={isMobile}
+          setIsLoggedIn={setIsLoggedIn}
         />
         <Content>
           {isJobLoading ? (
